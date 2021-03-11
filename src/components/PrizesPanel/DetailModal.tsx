@@ -11,10 +11,12 @@ const DetailModal = ({
   prize,
   visible,
   setVisible,
+  icons,
 }: {
   prize: Prize;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  icons: React.ReactNode;
 }) => {
   const { activePrize } = useSelector((state: RootState) => state.prizes);
 
@@ -30,16 +32,49 @@ const DetailModal = ({
       title={`Detalle Premio ${prize.id}`}
       visible={visible}
       setVisible={setVisible}
+      icons={icons}
     >
       {activePrize && (
-        <div>
-          <div>Nombre: {activePrize.name}</div>
-          <div>Precio: {activePrize.pointPrice} puntos</div>
-          <div>Descripción: {activePrize.description}</div>
-          <img
-            sx={{ width: "100px", height: "100px", objectFit: "cover" }}
-            src={activePrize.image}
-          />
+        <div
+          sx={{
+            mt: "10px",
+            display: "grid",
+            gridTemplateColumns: ["1fr", "1fr 1fr"],
+            gap: "10px",
+          }}
+        >
+          <div
+            sx={{
+              width: "100%",
+              position: "relative",
+              "&:after": {
+                content: '""',
+                display: "block",
+                pb: "100%",
+              },
+            }}
+          >
+            <img
+              src={activePrize.image}
+              sx={{
+                position: "absolute",
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </div>
+          <div>
+            <div>
+              <strong>Nombre:</strong> {activePrize.name}
+            </div>
+            <div>
+              <strong>Precio:</strong> {activePrize.pointPrice} puntos
+            </div>
+            <div>
+              <strong>Descripción:</strong> {activePrize.description}
+            </div>
+          </div>
         </div>
       )}
     </Modal>

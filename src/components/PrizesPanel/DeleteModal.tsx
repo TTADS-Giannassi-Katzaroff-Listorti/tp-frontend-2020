@@ -33,7 +33,7 @@ const DeleteModal = ({
   return (
     <Modal
       sx={{ maxWidth: "500px" }}
-      title={`¿Desea elimiar el premio ${prize.id}`}
+      title={`¿Desea elimiar el Premio ${prize.id}`}
       visible={visible}
       setVisible={setVisible}
     >

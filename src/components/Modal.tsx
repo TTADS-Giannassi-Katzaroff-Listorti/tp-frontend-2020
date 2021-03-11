@@ -67,8 +67,10 @@ const Modal = ({
           <h3 sx={{ my: 0 }}>{title || ""}</h3>
           <span
             sx={{
-              span: { opacity: 0.6, transition: "0.5s" },
-              "span:hover": { opacity: 1 },
+              display: "flex",
+              span: {
+                cursor: "pointer",
+              },
             }}
           >
             {icons}
