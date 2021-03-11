@@ -21,6 +21,11 @@ const PrizeForm = ({
   React.useEffect(() => {
     if (savedPrize) setPrize(savedPrize);
   }, [savedPrize]);
+  React.useEffect(() => {
+    if (prize.pointPrice === undefined || prize.pointPrice < 0) {
+      setPrize((prize) => ({ ...prize, pointPrice: 0 }));
+    }
+  }, [prize]);
   return (
     <div sx={{ display: "flex", flexDirection: "column", mt: "10px" }}>
       <div
@@ -36,7 +41,9 @@ const PrizeForm = ({
         <input type="text" value={prize.name} onChange={onChange("name")} />
         <label>Precio en puntos</label>
         <input
-          type="text"
+          type="number"
+          min="0"
+          max={Math.pow(2, 32)}
           value={prize.pointPrice}
           onChange={onChange("pointPrice")}
         />
