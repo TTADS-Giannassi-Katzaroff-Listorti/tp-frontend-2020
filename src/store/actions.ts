@@ -40,10 +40,10 @@ const refreshPrizes = (
   let response: AxiosResponse<any>;
   if (partial) {
     response = await Axios.get(
-      `http://localhost:4444/v1/prizes/find-by-name/${partial}`
+      `https://puntos.fkatz.ar/v1/prizes/find-by-name/${partial}`
     );
   } else {
-    response = await Axios.get("http://localhost:4444/v1/prizes");
+    response = await Axios.get("https://puntos.fkatz.ar/v1/prizes");
   }
   dispatch(setPrizes(response.data));
 };
@@ -51,26 +51,26 @@ const refreshPrizes = (
 const addPrize = (
   prize: Prize
 ): ThunkAction<void, PrizeState, unknown, Action<any>> => async (dispatch) => {
-  await Axios.post("http://localhost:4444/v1/prizes", prize);
+  await Axios.post("https://puntos.fkatz.ar/v1/prizes", prize);
 };
 
 const deletePrize = (
   prize: Prize
 ): ThunkAction<void, PrizeState, unknown, Action<any>> => async (dispatch) => {
-  await Axios.delete(`http://localhost:4444/v1/prizes/${prize.id}`);
+  await Axios.delete(`https://puntos.fkatz.ar/v1/prizes/${prize.id}`);
 };
 
 const updatePrize = (
   prize: Prize
 ): ThunkAction<void, PrizeState, unknown, Action<any>> => async (dispatch) => {
-  await Axios.put(`http://localhost:4444/v1/prizes/${prize.id}`, prize);
+  await Axios.put(`https://puntos.fkatz.ar/v1/prizes/${prize.id}`, prize);
 };
 
 const getActivePrize = (
   prize: Prize
 ): ThunkAction<void, PrizeState, unknown, Action<any>> => async (dispatch) => {
   const response = await Axios.get(
-    `http://localhost:4444/v1/prizes/${prize.id}`
+    `https://puntos.fkatz.ar/v1/prizes/${prize.id}`
   );
   dispatch(setActivePrize(response.data));
 };
